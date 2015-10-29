@@ -29,8 +29,7 @@ function insert (element) {
     });
 }
 
-export default function pipeline (event) {
-    var {element} = event.data;
+export default function pipeline ({data: {element}}) {
     return resolve(element)
         .then(convert)
         .map(insert);
