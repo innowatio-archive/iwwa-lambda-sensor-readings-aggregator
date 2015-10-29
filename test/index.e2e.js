@@ -1,7 +1,6 @@
 import BPromise from "bluebird";
 import chai, {expect} from "chai";
 import chaiAsPromised from "chai-as-promised";
-import {always} from "ramda";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
@@ -42,18 +41,15 @@ describe("`handler`", function () {
     const mongodb = {
         insert: sinon.stub().returns(BPromise.resolve())
     };
-    const v4 = always("_id");
 
     before(function () {
         index.__get__("pipeline").__Rewire__("config", config);
         index.__get__("pipeline").__Rewire__("mongodb", mongodb);
-        index.__get__("pipeline").__Rewire__("v4", v4);
     });
 
     after(function () {
         index.__get__("pipeline").__ResetDependency__("config");
         index.__get__("pipeline").__ResetDependency__("mongodb");
-        index.__get__("pipeline").__ResetDependency__("v4");
     });
 
     it("inserts misure in mongodb upon receiving a sensor-readings kinesis event", function () {
@@ -103,7 +99,7 @@ describe("`handler`", function () {
                     url: "MONGODB_URL",
                     collectionName: "MONGODB_COLLECTION_NAME",
                     element: {
-                        _id: "_id",
+                        _id: "0259b645-473c-4a3b-8923-0a5e4c295850-tipologia-1",
                         pod: "IT000000000000",
                         sensor: "A0000",
                         data: 1446114495000,
@@ -115,7 +111,7 @@ describe("`handler`", function () {
                     url: "MONGODB_URL",
                     collectionName: "MONGODB_COLLECTION_NAME",
                     element: {
-                        _id: "_id",
+                        _id: "0259b645-473c-4a3b-8923-0a5e4c295850-tipologia-3",
                         pod: "IT000000000000",
                         sensor: "A0000",
                         data: 1446114495000,
@@ -127,7 +123,7 @@ describe("`handler`", function () {
                     url: "MONGODB_URL",
                     collectionName: "MONGODB_COLLECTION_NAME",
                     element: {
-                        _id: "_id",
+                        _id: "0259b645-473c-4a3b-8923-0a5e4c295850-tipologia-2",
                         pod: "IT000000000000",
                         sensor: "A0000",
                         data: 1446114495000,

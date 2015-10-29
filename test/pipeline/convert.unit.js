@@ -1,5 +1,4 @@
 import {expect} from "chai";
-import {always} from "ramda";
 
 import pipeline from "pipeline";
 
@@ -7,15 +6,8 @@ describe("`convert`", function () {
 
     const convert = pipeline.__get__("convert");
 
-    before(function () {
-        pipeline.__Rewire__("v4", always("_id"));
-    });
-
-    after(function () {
-        pipeline.__ResetDependency__("v4");
-    });
-
     it("should convert the `sensorReading` into an array of `podReading`-s", function () {
+        const id = "id";
         const sensorReading = {
             sensorId: "A0000",
             podId: "IT000000000000",
@@ -41,9 +33,9 @@ describe("`convert`", function () {
                 }
             ]
         };
-        expect(convert(sensorReading)).to.deep.equal([
+        expect(convert(id, sensorReading)).to.deep.equal([
             {
-                _id: "_id",
+                _id: "id-tipologia-1",
                 pod: "IT000000000000",
                 sensor: "A0000",
                 data: 1446114495000,
@@ -51,7 +43,7 @@ describe("`convert`", function () {
                 tipologia: 1
             },
             {
-                _id: "_id",
+                _id: "id-tipologia-3",
                 pod: "IT000000000000",
                 sensor: "A0000",
                 data: 1446114495000,
@@ -59,7 +51,7 @@ describe("`convert`", function () {
                 tipologia: 3
             },
             {
-                _id: "_id",
+                _id: "id-tipologia-2",
                 pod: "IT000000000000",
                 sensor: "A0000",
                 data: 1446114495000,

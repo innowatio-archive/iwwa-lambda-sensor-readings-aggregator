@@ -39,16 +39,16 @@ describe("`pipeline`", function () {
     });
 
     it("passes the event element to the `convert` function", function () {
-        return pipeline({data: {element: {key: "value"}}})
+        return pipeline({data: {id: "id", element: {key: "value"}}})
             .then(function () {
-                expect(convert).to.have.been.calledWith({
+                expect(convert).to.have.been.calledWith("id", {
                     key: "value"
                 });
             });
     });
 
     it("maps the `convert` result with the `insert` function", function () {
-        return pipeline({data: {element: {key: "value"}}})
+        return pipeline({data: {id: "id", element: {key: "value"}}})
             .then(function () {
                 expect(insert).to.have.callCount(3);
                 expect(insert).to.have.been.calledWith({_id: "1"});

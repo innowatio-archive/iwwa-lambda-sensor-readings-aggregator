@@ -1,5 +1,4 @@
 import {resolve} from "bluebird";
-import {v4} from "node-uuid";
 
 import * as config from "./common/config";
 import * as mongodb from "./common/mongodb";
@@ -10,9 +9,10 @@ const tipologie = {
     "energia reattiva": 3
 };
 
-function convert (sensorReading) {
+function convert (id, sensorReading) {
+    // TODO improve id generation
     return sensorReading.measurements.map(measurement => ({
-        _id: v4(),
+        _id: `${id}-tipologia-${tipologie[measurement.type]}`,
         pod: sensorReading.podId,
         sensor: sensorReading.sensorId,
         data: new Date(sensorReading.date).getTime(),
@@ -29,8 +29,8 @@ function insert (element) {
     });
 }
 
-export default function pipeline ({data: {element}}) {
-    return resolve(element)
-        .then(convert)
+export default function pipeline ({data: {id, element}}) {
+    return resolve([id, element])
+        .spread(convert)
         .map(insert);
 }
