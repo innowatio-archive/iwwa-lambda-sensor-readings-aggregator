@@ -16,13 +16,13 @@ function getKinesisEvent (data) {
     }
     return {
         "Records": [{
-            "eventID": "shardId-000000000000:49545115243490985018280067714973144582180062593244200961",
+            "eventID": "shardId-000000000000:00000000000000000000000000000000000000000000000000000000",
             "eventVersion": "1.0",
             "kinesis": {
-                "partitionKey": "partitionKey-3",
+                "partitionKey": "partitionKey",
                 "data": objectToBase64(data),
                 "kinesisSchemaVersion": "1.0",
-                "sequenceNumber": "49545115243490985018280067714973144582180062593244200961"
+                "sequenceNumber": "00000000000000000000000000000000000000000000000000000000"
             },
             "invokeIdentityArn": "arn:aws:iam::EXAMPLE",
             "eventName": "aws:kinesis:record",
@@ -104,8 +104,8 @@ describe("`handler`", function () {
                     collectionName: "MONGODB_COLLECTION_NAME",
                     element: {
                         _id: "_id",
-                        podId: "IT000000000000",
-                        sensorId: "A0000",
+                        pod: "IT000000000000",
+                        sensor: "A0000",
                         data: 1446114495000,
                         reale: 537,
                         tipologia: 1
@@ -116,8 +116,8 @@ describe("`handler`", function () {
                     collectionName: "MONGODB_COLLECTION_NAME",
                     element: {
                         _id: "_id",
-                        podId: "IT000000000000",
-                        sensorId: "A0000",
+                        pod: "IT000000000000",
+                        sensor: "A0000",
                         data: 1446114495000,
                         reale: 20.3,
                         tipologia: 3
@@ -128,8 +128,8 @@ describe("`handler`", function () {
                     collectionName: "MONGODB_COLLECTION_NAME",
                     element: {
                         _id: "_id",
-                        podId: "IT000000000000",
-                        sensorId: "A0000",
+                        pod: "IT000000000000",
+                        sensor: "A0000",
                         data: 1446114495000,
                         reale: 57,
                         tipologia: 2

@@ -13,8 +13,8 @@ const tipologie = {
 function convert (sensorReading) {
     return sensorReading.measurements.map(measurement => ({
         _id: v4(),
-        podId: sensorReading.podId,
-        sensorId: sensorReading.sensorId,
+        pod: sensorReading.podId,
+        sensor: sensorReading.sensorId,
         data: new Date(sensorReading.date).getTime(),
         reale: parseFloat(measurement.value),
         tipologia: tipologie[measurement.type]

@@ -44,24 +44,24 @@ describe("`convert`", function () {
         expect(convert(sensorReading)).to.deep.equal([
             {
                 _id: "_id",
-                podId: "IT000000000000",
-                sensorId: "A0000",
+                pod: "IT000000000000",
+                sensor: "A0000",
                 data: 1446114495000,
                 reale: 537,
                 tipologia: 1
             },
             {
                 _id: "_id",
-                podId: "IT000000000000",
-                sensorId: "A0000",
+                pod: "IT000000000000",
+                sensor: "A0000",
                 data: 1446114495000,
                 reale: 20.3,
                 tipologia: 3
             },
             {
                 _id: "_id",
-                podId: "IT000000000000",
-                sensorId: "A0000",
+                pod: "IT000000000000",
+                sensor: "A0000",
                 data: 1446114495000,
                 reale: 57,
                 tipologia: 2
